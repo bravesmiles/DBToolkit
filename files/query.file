@@ -1,0 +1,3 @@
+show tables
+select * from address
+select * from attr
