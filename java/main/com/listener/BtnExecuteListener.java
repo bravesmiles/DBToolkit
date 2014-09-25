@@ -80,6 +80,7 @@ public class BtnExecuteListener extends SelectionAdapter {
 				}
 				if (runner != null) {
 					try{
+					// The query only execute the select operation
 					MainWindow.list = runner.query(MainWindow.text.getText(),
 							new MapListHandler(), (Object[]) null);
 					}
@@ -148,8 +149,8 @@ public class BtnExecuteListener extends SelectionAdapter {
 					content = new StringBuffer("");
 					content.append("\n" + MainWindow.list.size()
 							+ (MainWindow.list.size() <= 1 ? " row" : " rows")
-							+ " in set £¨" + (afterTime - beforeTime)*1.0 / 1000
-							+ " sec£©");
+							+ " in set ï¿½ï¿½" + (afterTime - beforeTime)*1.0 / 1000
+							+ " secï¿½ï¿½");
 					MessageDialog.openInformation(MainWindow.shlAToolkitFor,
 							"Result", content.toString());
 					MainWindow.query = addToQuery(MainWindow.text.getText());
