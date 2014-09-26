@@ -24,10 +24,10 @@ public class TableToExcel {
 	
 	public static void export(String filename, List<Map<String, Object>> list) throws IOException, RowsExceededException, WriteException {
 		int row = 0, col = 0;
-		// 打开文件
+		// Open the file.
 		WritableWorkbook book = Workbook.createWorkbook(new File(filename));
 
-		// 生成名第页工作表参数0表示第页
+		// Generate the the 'Result' excel file
 		WritableSheet sheet = book.createSheet("Result", 0);
 		
 		List<Integer> borderList = new ArrayList<Integer>();
@@ -49,7 +49,7 @@ public class TableToExcel {
             } 
         } 
 		
-		//printf the body of hearder.
+		//Print the body of hearder.
 		for (Iterator<Map<String, Object>> li = list.iterator(); li  
                 .hasNext();) {  
             Map<String, Object> m = li.next();  
@@ -64,7 +64,7 @@ public class TableToExcel {
             col++;
             break;
         } 
-		//printf the body of result.
+		//Print the body of result.
 		for (Iterator<Map<String, Object>> li = list.iterator(); li  
                 .hasNext();) {  
             Map<String, Object> m = li.next();  
@@ -72,15 +72,10 @@ public class TableToExcel {
             for (Iterator<Entry<String, Object>> mi = m.entrySet()  
                     .iterator(); mi.hasNext();) {  
                 Entry<String, Object> e1 = mi.next();
-//	                System.out.printf(": %s  ",e1.getValue());  
-    			/*
-    			 * 生成保存数字单元格 必须使用Number完整包路径否则有语法歧义 单元格位置第二列第行值789.123
-    			 */
     			sheet.addCell(new Label(row++, col, ""+e1.getValue()));
             }
             col++;
         } 
-		// 写入数据并关闭文件
 		book.write();
 		book.close();
 	}

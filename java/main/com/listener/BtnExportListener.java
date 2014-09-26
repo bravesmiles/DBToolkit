@@ -37,7 +37,6 @@ public class BtnExportListener extends SelectionAdapter{
 				try {
 					TableToExcel.export(dir+"\\result.xls", MainWindow.list);	//export to the user-defined directory.
 				} catch (WriteException | IOException e1) {
-					e1.printStackTrace();
 					log.warn(new Date().toString() + e1.getMessage()); 
 				}
 				MessageDialog.openInformation(MainWindow.shlAToolkitFor, "Export Success!", "Query result has been saved to " + dir + "\\result.xls");

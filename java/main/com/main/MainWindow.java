@@ -1,7 +1,6 @@
 package com.main;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +39,8 @@ import com.listener.BtnExecuteListener;
 import com.listener.BtnExportListener;
 import com.listener.BtnRenameListener;
 import com.listener.BtnSaveListener;
+import com.listener.BtnUpdateListener;
+import com.listener.BtnUpdateListenerTest;
 import com.listener.ConfListListener;
 import com.listener.TxtPortVerifyListener;
 import com.model.DBUser;
@@ -47,7 +48,8 @@ import com.model.DBUser;
 public class MainWindow {
 	private static Log log = LogFactory.getLog(MainWindow.class);
 	
-	public static StringBuffer query = new StringBuffer("");	// remember the query sentences.
+	// Remember the query sentences.
+	public static StringBuffer query = new StringBuffer("");	
 	public static Shell shlAToolkitFor;
 	public static Text text;
 	public static Text txtHost;
@@ -66,11 +68,13 @@ public class MainWindow {
 	public static Button btnSave;
 	public static Button btnExport;
 	public static Button btnExecute;
+	public static Button btnUpdate;
 	public static Button btnClick;
 	public static Canvas canvas;
 	public static Canvas canvas_2;
 	
-	public static List<Map<String, Object>> list; // store the result of sql query.
+	// Store the result of sql query.
+	public static List<Map<String, Object>> list; 
 	/**
 	 * Launch the application.
 	 * @param args
@@ -135,7 +139,8 @@ public class MainWindow {
 		DBUser defaultUser = new DBUser();
 		
 		shlAToolkitFor = new Shell();/*SWT.CLOSE|SWT.TITLE|SWT.MIN|SWT.MAX*/
-		shlAToolkitFor.addListener(SWT.Close, new Listener() {	//when close the project, save the sql query.
+		//when close the project, save the sql query.
+		shlAToolkitFor.addListener(SWT.Close, new Listener() {	
 		      public void handleEvent(Event event) {
 		    	  try {
 					Assistances.writeToText(query+"");
@@ -261,6 +266,15 @@ public class MainWindow {
 		btnExecute.addSelectionListener(new BtnExecuteListener());
 		btnExecute.setForeground(new Color(null, new RGB(0, 255, 0)));
 		btnExecute.setBounds(444, 128, 61, 41);
+		
+		//Button -- Execute the Update and Display the Result.
+		btnUpdate = new Button(shlAToolkitFor, SWT.NONE);
+		btnUpdate.setText("update");
+		btnUpdate.setBackground(SWTResourceManager.getColor(SWT.COLOR_LINK_FOREGROUND));
+		btnUpdate.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
+		btnUpdate.addSelectionListener(new BtnUpdateListener());
+		btnUpdate.setForeground(new Color(null, new RGB(0, 255, 0)));
+		btnUpdate.setBounds(444, 128+41+10, 61, 41);
 		
 		canvas_2 = new Canvas(shlAToolkitFor, SWT.NONE);
 		canvas_2.setBounds(10, 10, 129, shlAToolkitFor.getBounds().height-60);

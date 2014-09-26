@@ -16,9 +16,11 @@ public class TxtPortVerifyListener implements VerifyListener {
 	public void verifyText(VerifyEvent e) {
 		Pattern pattern = Pattern.compile("[0-9]\\d*");
 		Matcher matcher = pattern.matcher(e.text);
-		if (matcher.matches()) // 处理数字
+		// Deal with digit
+		if (matcher.matches()) 
 			e.doit = true;
-		else if (e.text.length() > 0) // 有字符情况,包含中文、空格
+		// Have character, include blank or Chinese
+		else if (e.text.length() > 0) 
 			e.doit = false;
 		else
 			e.doit = true;

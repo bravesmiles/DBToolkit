@@ -57,7 +57,7 @@ public class BtnSaveListener extends SelectionAdapter{
 		} catch (ParserConfigurationException | SAXException | IOException | TransformerException e1) {
 			e1.printStackTrace();
 			MessageDialog.openInformation(MainWindow.shlAToolkitFor, "Save conf Error", "An erroe occured when save conf " + confname + "!\n"+e1.getMessage());
-			log.warn(new Date().toString() + e1.getMessage()); 
+			log.warn(new Date().toString() + e1.getMessage());
 		}
 	}
 }

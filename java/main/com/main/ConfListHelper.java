@@ -18,14 +18,14 @@ import com.xml.helper.XMLReader;
  *
  */
 public class ConfListHelper {
-	// add list to confList.
+	/** Add list to confList. */
 	public static void addConfLists(org.eclipse.swt.widgets.List confListTmp) {
 		List<DBUser> dbuserList = getDBUsers();
 		for (DBUser user : dbuserList)
 			confListTmp.add(user.getConfname());
 	}
 
-	//get all db users
+	/** Get all db users. */
 	public static List<DBUser> getDBUsers() {
 		List<DBUser> dbuserList;
 		try {
@@ -36,5 +36,13 @@ public class ConfListHelper {
 			MessageDialog.openError(MainWindow.shlAToolkitFor, "Error", e.getMessage());
 		}
 		return null;
+	}
+	
+	/** Set Conf content default. */
+	public static void clearConfContent()
+	{
+		MainWindow.databaseCombo.select(0);		MainWindow.txtDbName.setText("");
+		MainWindow.txtHost.setText("");			MainWindow.txtPort.setText("");
+		MainWindow.txtUsername.setText("");     MainWindow.txtPassword.setText("");
 	}
 }

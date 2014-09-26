@@ -36,18 +36,16 @@ public class BtnDeleteListener extends SelectionAdapter {
 			try {
 				XMLWriter.DeleteFromXML(CONF.filename, MainWindow.confList.getItem(index));
 			} catch (ParserConfigurationException | SAXException | IOException e1) {
-				e1.printStackTrace();
 				log.warn(new Date().toString() + e1.getMessage()); 
 			}
-			//refresh the conflist.
+			//Refresh the conflist.
 			MainWindow.confList.removeAll();
 			ConfListHelper.addConfLists(MainWindow.confList);
 			
 			DBUser user = null;
+			// There is no conf files.
 			if(ConfListHelper.getDBUsers()==null || ConfListHelper.getDBUsers().size()==0) {
-				MainWindow.databaseCombo.select(0);		MainWindow.txtDbName.setText("");
-				MainWindow.txtHost.setText("");			MainWindow.txtPort.setText("");
-				MainWindow.txtUsername.setText("");   	MainWindow. txtPassword.setText("");
+				ConfListHelper.clearConfContent();
 			}
 			else { 
 				if(index>0) {

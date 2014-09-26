@@ -27,7 +27,8 @@ public class BtnClickListener extends SelectionAdapter{
 		String host = MainWindow.txtHost.getText().trim();
 		String portStr = MainWindow.txtPort.getText().trim();
 		
-		if (host.equals("")	)//if there is no data in the host or port.				
+		//If there is no data in the host or port.			
+		if (host.equals("")	)	
 			MessageDialog.openInformation(MainWindow.shlAToolkitFor,
 					"wrong host", "check host first.");
 		else if(portStr.equals(""))
@@ -45,7 +46,8 @@ public class BtnClickListener extends SelectionAdapter{
 			
 			boolean connected;
 			try {
-				connected = DbHelper.checkIfConnected(user);	// check whether database could be connected.
+				// Check whether database could be connected.
+				connected = DbHelper.checkIfConnected(user);	
 				if(connected)
 					MessageDialog.openInformation(MainWindow.shlAToolkitFor, "Test Connection", "Connected: true!");
 			} catch(SQLException se) {

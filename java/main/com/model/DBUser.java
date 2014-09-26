@@ -8,7 +8,8 @@ package com.model;
 public class DBUser {
 	
 	private String confname;
-	private int database = 1; //0-oracle 1-mysql 2-sqlserver
+	 //0-oracle 1-mysql 2-sqlserver
+	private int database = 1;
 	private String host = "localhost";
 	private int port = 3306;
 	private String username = "root";

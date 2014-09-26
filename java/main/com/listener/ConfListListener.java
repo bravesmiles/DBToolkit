@@ -18,7 +18,7 @@ public class ConfListListener extends SelectionAdapter{
 	public void widgetSelected(SelectionEvent e) {
 		int listHaveChouse = MainWindow.confList.getSelectionIndex();  
 		DBUser selected = new DBUser();
-		//did not add a new conf.
+		//Did not add a new conf.
 		if(MainWindow.confList.getItemCount() == ConfListHelper.getDBUsers().size())
 		{
 			if(listHaveChouse==-1)
@@ -31,28 +31,19 @@ public class ConfListListener extends SelectionAdapter{
 			MainWindow.txtDbName.setText(selected.getDbname());
 			MainWindow.databaseCombo.select(selected.getDatabase());
 		}
-		else { //add a new conf but have not saved.
+		//Add a new conf but have not saved.
+		else { 
 			if(listHaveChouse==-1)
 			{
 				listHaveChouse = MainWindow.confList.getItemCount()-2;
 				MainWindow.confList.select(listHaveChouse+1);
-				MainWindow.txtHost.setText("");
-				MainWindow.txtPort.setText("");
-				MainWindow.txtUsername.setText("");
-				MainWindow.txtPassword.setText("");
-				MainWindow.txtDbName.setText("");
-				MainWindow.databaseCombo.select(0);
+				ConfListHelper.clearConfContent();
 			}
 			else if(listHaveChouse>=MainWindow.confList.getItemCount()-1)
 			{
 				listHaveChouse = MainWindow.confList.getItemCount()-1;
 				MainWindow.confList.select(listHaveChouse);
-				MainWindow.txtHost.setText("");
-				MainWindow.txtPort.setText("");
-				MainWindow.txtUsername.setText("");
-				MainWindow.txtPassword.setText("");
-				MainWindow.txtDbName.setText("");
-				MainWindow.databaseCombo.select(0);//
+				ConfListHelper.clearConfContent();
 			} else {
 				selected = ConfListHelper.getDBUsers().get(listHaveChouse);
 				MainWindow.txtHost.setText(selected.getHost());

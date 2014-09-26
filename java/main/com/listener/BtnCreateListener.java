@@ -23,9 +23,7 @@ public class BtnCreateListener extends SelectionAdapter{
 			MainWindow.confList.add("UnnamedDB", MainWindow.confList.getItemCount());
 			//clear the data in the input text area.
 			MainWindow.confList.select(MainWindow.confList.getItemCount()-1);
-			MainWindow.databaseCombo.select(0);		MainWindow.txtDbName.setText("");
-			MainWindow.txtHost.setText("");			MainWindow.txtPort.setText("");
-			MainWindow.txtUsername.setText("");     MainWindow.txtPassword.setText("");
+			ConfListHelper.clearConfContent();
 		}
 	}
 }

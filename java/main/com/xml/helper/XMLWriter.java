@@ -122,7 +122,7 @@ public class XMLWriter {
 
 		doc.normalize();
 		NodeList links = doc.getElementsByTagName("user");
-		// 查找要替换的Node
+		// Look for the confname to be replaced.
 		boolean blfindNode = false;
 		Element link = null;
 		for (int i = 0; i < links.getLength(); i++) {
@@ -135,20 +135,21 @@ public class XMLWriter {
 					link.getParentNode().removeChild(link);
 				} catch (DOMException e) {
 					e.printStackTrace();
-					return 2;// Dom错误
+					return 2;// Dom error
 				}
 				break;
 			}
 		}
 
 		if (!blfindNode) {
-			return 1;// 没有找到合适的节点
+			// There is no proper Node.
+			return 1;
 		}
 		try {
 			TransformerFactory tFactory = TransformerFactory.newInstance();
 			Transformer transformer = tFactory.newTransformer();
-			// 设置输出的encoding为改变gb2312
-
+			
+			// Set the encoding format 'UTF-8'
 			transformer.setOutputProperty("encoding", "UTF-8");
 			DOMSource source = new DOMSource(doc);
 
@@ -157,13 +158,13 @@ public class XMLWriter {
 		} catch (javax.xml.transform.TransformerConfigurationException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
-			return 3;// 写文件错误
+			return 3;// Writing file error
 		} catch (javax.xml.transform.TransformerException ex) {
 			ex.printStackTrace();
 			return 3;
 		}
 
-		return 0;// 替换成功
+		return 0;// Replace success
 	}
 
 	/***
@@ -184,7 +185,7 @@ public class XMLWriter {
 
 			doc.normalize();
 			NodeList links = doc.getElementsByTagName("user");
-			// 查找要替换的Node
+			// Look for Node to be replaced
 			boolean blfindNode = false;
 			Element link = null;
 			for (int i = 0; i < links.getLength(); i++) {
@@ -198,20 +199,22 @@ public class XMLWriter {
 				}
 			}
 			if (!blfindNode) {
-				return 1;// 没有找到合适的节点
+				// There is no proper node.
+				return 1;
 			}
 			try {
 				TransformerFactory tFactory = TransformerFactory.newInstance();
 				Transformer transformer = tFactory.newTransformer();
-				// 设置输出的encoding为改变gb2312
-				transformer.setOutputProperty("encoding", "gb2312");
+				
+				// Set the encoding format 'UTF-8'
+				transformer.setOutputProperty("encoding", "UTF-8");
 				DOMSource source = new DOMSource(doc);
 				StreamResult result = new StreamResult(filename);
 				transformer.transform(source, result);
 			} catch (javax.xml.transform.TransformerConfigurationException e) {
 				e.printStackTrace();
 				System.out.println(e.getMessage());
-				return 3;// 写文件错误
+				return 3;// Write file error
 			} catch (javax.xml.transform.TransformerException ex) {
 				ex.printStackTrace();
 				return 3;
@@ -224,6 +227,6 @@ public class XMLWriter {
 			e.printStackTrace();
 		}
 
-		return 0;// 替换成功
+		return 0;// Replace success
 	}
 }
